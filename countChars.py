@@ -1,6 +1,6 @@
 from os import strerror
 
-srcname = input("Source file name (.txt): ")
+srcname = input("Enter file name (.txt): ")
 cnt = 0
 letterDict = {}
 try:
@@ -21,7 +21,9 @@ try:
     letterTuples = letterDict.items()               # with .items() the dictionary becomes a list of tuples
     sorted_letterTuples = sorted(letterTuples)      # tuples on list get sorted alphabethically
     
-    print("Letter count: {}\nLetters in {}: {}".format(cnt, srcname, sorted_letterTuples))
+    print("Letters count: {}".format(cnt))
+    for tuple in sorted_letterTuples:
+        print("{} -> {}".format(tuple[0],tuple[1]))
 
 except IOError as e:
     print("Cannot open source file: ", strerror(e.errno))
