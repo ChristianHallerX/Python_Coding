@@ -2,7 +2,8 @@
 █▄─▄▄─█▄─█─▄█▄─▄███─▄▄─██▀▄─██▄─▄▄▀█▄─▀█▀─▄█▄─██─▄█─▄▄▄▄█▄─▄█─▄▄▄─█
 ██─▄▄▄██▄─▄███─██▀█─██─██─▀─███─██─██─█▄█─███─██─██▄▄▄▄─██─██─███▀█
 ▀▄▄▄▀▀▀▀▄▄▄▀▀▄▄▄▄▄▀▄▄▄▄▀▄▄▀▄▄▀▄▄▄▄▀▀▄▄▄▀▄▄▄▀▀▄▄▄▄▀▀▄▄▄▄▄▀▄▄▄▀▄▄▄▄▄▀
-
+<br>
+<br>
 
 
 **Functionality**
@@ -10,26 +11,30 @@
 Caution: This project is work-in-progress, and recently yt stopped external queries.
 
 The program accepts music titles and downloads them from YouTube as mp3 files.
-
+<br>
+<br>
 
 **Installation**
 
 Install the latest PyCharm IDE and Python 3.8+
 Then clone this repo.
-
+<br>
+<br>
 
 **Create a Project with Python 3.8+**
 
 1. Pure Python
 2. Location: give the project a name
 3. Create Virtual Environment
-
+<br>
+<br>
 
 **Download library requirements**
 
 Pull up the Terminal window from the bottom of the screen and run
 *pip install -r requirements.txt*
-
+<br>
+<br>
 
 **Use** 
 
