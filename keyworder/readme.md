@@ -45,9 +45,6 @@ pip install -r requirements.txt
 
 
 ## Usage 
-1. Fill the example_song_list.txt file with your track list (use the same format aka =song|artist=, one per line)
-2. run 'python keyworder.py', it will use searx to to find the URL of the song on YouTube Music and then download the mp3 using =youtube-dl=.
-
-
-** Disclaimer
-Downloading copyrighted songs may be illegal in your country. This tool is for educational purposes bla bla bla... Please support the artists by buying their music.
+1. Copy the job descritpion to your clipboard ('strg' + 'c')
+2. Run 'python keyworder.py'.
+3. Paste ('strg' + 'v') job description to terminal when prompted and press 'ENTER'.
