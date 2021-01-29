@@ -28,7 +28,7 @@ Python 3.5+ must be installed
 
 ~~~shell
 python -m venv venv
-~~~shell
+~~~
 
 ### Source env
 
