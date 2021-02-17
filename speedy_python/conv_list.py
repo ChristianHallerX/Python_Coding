@@ -1,4 +1,4 @@
-def convert_units(names, heights, weights):
+def convert_units_list(names, heights, weights):
     new_hts = [ht * 0.39370  for ht in heights]
     new_wts = [wt * 2.20462  for wt in weights]
     people_data = {}
