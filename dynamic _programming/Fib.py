@@ -24,17 +24,28 @@ def FibIter(n):
         return fib_ii
 
 
-print('Iterative calculation: ', FibIter(10))
-
-
 def FibRecur(n):
     """Return the nth Fibonacci number recursively. Assumes n >= 0."""
-    if n == 0:
-        return 0
-    if n == 1:
+    if n <= 2:
         return 1
     else:
         return FibRecur(n-1) + FibRecur(n-2)
 
+def FibMemo(n,dict=None):
+    if dict == None:
+        dict = {}
+    if n in dict.keys():
+        return dict[n]
+    elif n <= 2:
+        return 1
+    dict[n] = FibMemo(n-1,dict) + FibMemo(n-2,dict)
+    return dict[n]
 
-print('Recursive calculation: ', FibRecur(10))
+
+def main():
+    print('Iterative calculation: ', FibIter(10))
+    print('Recursive calculation: ', FibRecur(10))
+    print('Memoization calculation: ', FibMemo(100)) # this should be quick with dict memo
+
+if __name__ == '__main__':
+    main()

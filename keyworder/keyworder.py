@@ -1,6 +1,8 @@
+import string
+
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-import string
+
 
 def tokenizer(my_string):
     # Convert to lowercase string

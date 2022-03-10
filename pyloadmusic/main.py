@@ -1,11 +1,12 @@
 from __future__ import unicode_literals
 
 import logging
-import requests
 import urllib.parse
-import youtube_dl
 from queue import Queue
 from threading import Thread
+
+import requests
+import youtube_dl
 
 # import custom library
 from config import youtube_config

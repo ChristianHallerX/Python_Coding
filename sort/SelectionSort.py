@@ -8,7 +8,7 @@ Created on Sat Jan  1 13:09:24 2022
 
 def SelectionSort(L):
     """Sort a smaller and smaller portion of the list. Compare each element
-    of remaining list against marker.
+    of remaining list against marker. Move marker towards end.
     Complexity growth O(n2), where n is len(L).
     """
     marker_idx = 0
