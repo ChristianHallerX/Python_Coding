@@ -8,7 +8,8 @@ the array 'nums' = [0,1,2,4,5,6,7] might become:
     [4,5,6,7,0,1,2] if it was rotated 4 times.
     [0,1,2,4,5,6,7] if it was rotated 7 times.
 
-Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].
+Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a[1], a[2],
+..., a[n-2]].
 
 Given the sorted rotated array nums of unique elements, return the minimum element of this array.
 
@@ -48,9 +49,9 @@ def findMin(nums: list[int]) -> int:
 
 
 def main():
-    print(findMin(nums=[3,4,5,1,2]), 'expected: 1')
-    print(findMin(nums=[4,5,6,7,0,1,2]), 'expected: 0')
-    print(findMin(nums=[11,13,15,17]), 'expected: 11')
+    print(findMin(nums=[3, 4, 5, 1, 2]), 'expected: 1')
+    print(findMin(nums=[4, 5, 6, 7, 0, 1, 2]), 'expected: 0')
+    print(findMin(nums=[11, 13, 15, 17]), 'expected: 11')
 
 
 if __name__ == '__main__':

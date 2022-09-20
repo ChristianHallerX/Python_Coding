@@ -1,8 +1,9 @@
-'''
-217. Contains Duplicate
+"""
+217. Contains Duplicate (easy)
+
 Given an integer array 'nums', return 'True' if any value appears at least twice in the array,
 and return 'False' if every element is distinct.
-'''
+"""
 
 def containsDuplicate(nums):
     hash_map = {}
@@ -11,14 +12,21 @@ def containsDuplicate(nums):
         if num in hash_map.keys():
             return True
 
-        # if num not in hash_map, write to hash_map
+        # if num not in hash_map, write to hash_map as key,
         hash_map[num] = i
     return False
 
+def containsDuplicateSet(nums):
+    return len(nums) != len(set(nums))
+
 def main():
-    print(containsDuplicate(nums=[1,2,3,1]), 'expected: True')
-    print(containsDuplicate(nums=[1,2,3,4]), 'expected: False')
-    print(containsDuplicate(nums=[1,1,1,3,3,4,3,2,4,2]), 'expected: True')
+    print(containsDuplicate(nums=[1, 2, 3, 1]), 'expected: True')
+    print(containsDuplicate(nums=[1, 2, 3, 4]), 'expected: False')
+    print(containsDuplicate(nums=[1, 1, 1, 3, 3, 4, 3, 2, 4, 2]), 'expected: True')
+    print(containsDuplicateSet(nums=[1, 2, 3, 1]), 'expected: True')
+    print(containsDuplicateSet(nums=[1, 2, 3, 4]), 'expected: False')
+    print(containsDuplicateSet(nums=[1, 1, 1, 3, 3, 4, 3, 2, 4, 2]), 'expected: True')
+
 
 if __name__ == '__main__':
     main()
