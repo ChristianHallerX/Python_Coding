@@ -10,29 +10,35 @@ You may assume that each input would have exactly one solution, and you may not 
 You can return the answer in any order.
 """
 
+
 def twoSum(nums, target):
     """
-    Write all nums to hash_map and check if the diff of current num is already in hash_map
-    iterate once over nums list -> time O(n)
+    The idea is to calculate fear each number the difference to target and
+    compare to a dictionary of previously visited numbers.
+    The dictionary contains all num values mapped to index (num:index).
+    If the diff IS in the dict, return current num's index and diff's index from dict.
+    If the diff is NOT in the dict, add the num: index.
     """
-    hash_map = {}  # num : index
 
-    for index, num in enumerate(nums):
+    num_dict = {}  # num: index
+
+    for i, num in enumerate(nums):
+
         diff = target - num
-        if diff in hash_map:
-            # if the diff to current num is in hash_map,
-            # then return the diff index and the current index from hash_map
-            return [hash_map[diff], index]
-        else:
-            # basic operation:  if 'diff' is not in hash_map, then save 'num' and 'index' to hash_map
-            hash_map[num] = index
+
+        if diff in num_dict:
+            # return the pair of indices
+            return [num_dict[diff], i]
+
+        # did not find diff in dict, add current num: index to dict
+        num_dict[num] = i
 
 
 def main():
-    print(twoSum(nums=[2, 7, 11, 15], target=9), ' expected: [0,1]')
-    print(twoSum(nums=[3, 2, 4], target=6), ' expected: [1,2]')
-    print(twoSum(nums=[3, 3], target=6), ' expected: [0,1]')
+    print(twoSum(nums=[2, 7, 11, 15], target=9), " expected: [0,1]")
+    print(twoSum(nums=[3, 2, 4], target=6), " expected: [1,2]")
+    print(twoSum(nums=[3, 3], target=6), " expected: [0,1]")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
