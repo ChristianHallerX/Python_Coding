@@ -10,6 +10,7 @@ sell that stock.
 Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 """
 
+
 def maxProfit(prices):
     max_profit = 0
     lowest_buy = prices[0]
@@ -22,37 +23,41 @@ def maxProfit(prices):
     return max_profit
 
 
-def maxProfitTwoPointer(prices):
+def maxProfitTwoPointer(prices: list[int]) -> int:
     """
-    left_pointer = buy, right_pointer = sell
+    Two pointer with sliding window.
+    -> Only move pointers if conditions are met and slide only once across the list.
+    Left pointer = buy, right pointer = sell
+    Time complexity: O(n)
+    Space complexity: O(1) no extra objects except profit and pointers, which does not count.
     """
-    # initialize both pointers both on the indices at left end of array next to each other
-    left_pointer, right_pointer = 0, 1
-    max_profit = 0
 
-    # loop until right pointer reaches end of array
-    while right_pointer < len(prices):
+    left = 0  # Buy
+    right = 1  # Sell
 
-        # case it is profitable, calc profit and later move pointer
-        if prices[left_pointer] < prices[right_pointer]:
-            profit = prices[right_pointer] - prices[left_pointer]
-            max_profit = max(profit, max_profit)
-        # case it is NOT profitable, move pointers
+    maxProfit = 0
+
+    while right < len(prices):
+        # Calculate profit when left price is lower than right price
+        if prices[left] < prices[right]:
+            profit = prices[right] - prices[left]
+            maxProfit = max(maxProfit, profit)
         else:
-            left_pointer += 1  # left_pointer = right_pointer
+            # Move left pointer forward (buy) when left price is higher
+            left = right
+        # Always move right
+        right += 1
 
-        # regardless of profit or not, move right pointer
-        right_pointer += 1
-    return max_profit
+    return maxProfit
 
 
 def main():
-    print(maxProfit(prices=[7, 1, 5, 3, 6, 4]), 'expected: 5')
-    print(maxProfit(prices=[7, 6, 4, 3, 1]), 'expected: 0')
+    print(maxProfit(prices=[7, 1, 5, 3, 6, 4]), "expected: 5")
+    print(maxProfit(prices=[7, 6, 4, 3, 1]), "expected: 0")
 
-    print(maxProfitTwoPointer(prices=[7, 1, 5, 3, 6, 4]), 'expected: 5')
-    print(maxProfitTwoPointer(prices=[7, 6, 4, 3, 1]), 'expected: 0')
+    print(maxProfitTwoPointer(prices=[7, 1, 5, 3, 6, 4]), "expected: 5")
+    print(maxProfitTwoPointer(prices=[7, 6, 4, 3, 1]), "expected: 0")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
