@@ -9,6 +9,7 @@ Return the length of the longest EQUAL substring containing the same letter you 
 operations.
 """
 
+
 def characterReplacement(s: str, k: int) -> int:
     left_pointer, right_pointer = 0, 0
     result = 0
@@ -16,7 +17,7 @@ def characterReplacement(s: str, k: int) -> int:
 
     while right_pointer <= len(s):
         # Case: contains only one kind of char (good)
-        if len(set(s[left_pointer:right_pointer + 1])) == 1:
+        if len(set(s[left_pointer : right_pointer + 1])) == 1:
             # reset working_k to original k if all equal
             working_k = k
 
@@ -43,33 +44,48 @@ def characterReplacement(s: str, k: int) -> int:
 
 
 def characterReplacementDict(s: str, k: int) -> int:
-    char_count = {} # key char: value count
+    """
+    Sliding Window, Two Pointers.
+    Given a substring, you can replace k chars to make all equal chars.
+    What is the longest substring length for the given input string and k non-most-frequent chars?
+
+    Right pointer always moves forward, left pointer is adjusted until valid, then measure window length.
+
+    Time complexity O(n*26) = O(n)
+    """
     result = 0
-    left_pointer = 0
+    count_dict = {}
+    left = 0
 
-    for right_pointer in range(len(s)):
-        # add current character at right pointer to char count dictionary
-        char_count[s[right_pointer]] = 1 + char_count.get(s[right_pointer], 0)  # 1 plus what's in dict, default 0
-        this_length = right_pointer - left_pointer + 1
+    # Always move right pointer to right
+    for right in range(len(s)):
 
-        # string length minus most frequent character -> chars to be replaced, k = allowable replacements
-        if this_length - max(char_count.values()) > k:
-            # decrement count of char at left pointer by one, then shift left pointer by one
-            char_count[s[left_pointer]] -= 1
-            left_pointer += 1
+        # Add char key at right pointer to count_dict and
+        # increment count value (get defaults to 0)
+        count_dict[s[right]] = 1 + count_dict.get(s[right], 0)
 
-        result = max(result, this_length)
+        # Adjust window length on left if necessary
+        # While substring has too many substitutes (is invalid), move left pointer
+        while (right - left + 1) - max(count_dict.values()) > k:
+            # Decrement left pointer char in dict
+            count_dict[s[left]] -= 1
+            # Move left pointer
+            left += 1
+
+        # Calculate window length
+        result = max(right - left + 1, result)
+
     return result
 
 
 def main():
-    print('characterReplacement')
-    print(characterReplacement(s="ABAB", k=2), 'expected 4')
-    print(characterReplacement(s="AABABBA", k=1), 'expected 4')
-    print('characterReplacementDict')
-    print(characterReplacementDict(s="ABAB", k=2), 'expected 4')
-    print(characterReplacementDict(s="AABABBA", k=1), 'expected 4')
+    print("characterReplacement")
+    print(characterReplacement(s="ABAB", k=2), "expected 4")
+    print(characterReplacement(s="AABABBA", k=1), "expected 4")
+    print("characterReplacementDict")
+    print(characterReplacementDict(s="ABAB", k=2), "expected 4")
+    print(characterReplacementDict(s="AABABBA", k=1), "expected 4")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

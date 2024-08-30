@@ -7,22 +7,33 @@ Time complexity: O(n)
 Space complexity: O(n) because each character could be unique and the result may be a copy of the input string.
 """
 
-def lengthOfLongestSubstring(s: str) -> int:
-    left_pointer, right_pointer = 0, 1
-    result = 0
 
-    while right_pointer < len(s):
-        if len(s[left_pointer:right_pointer + 1]) == len(set(s[left_pointer:right_pointer + 1])):
-            # no duplicates
-            # substring_length = len(set(s[left_pointer:right_pointer + 1]))
-            substring_length = right_pointer - left_pointer + 1
-            result = max(result, substring_length)
-            # move right pointer
-            right_pointer += 1
-        else:
-            # contains duplicate
-            left_pointer += 1
-    return result
+def lengthOfLongestSubstring(s: str) -> int:
+    """
+    Sliding window, two pointers, move across string only once.
+    Move across s only once, move left and right pointers in a smart way.
+    Check if substring has dublicates with set. If yes, move left pointer
+    Time complexity O(n)
+    Memory complexity O(n)
+    You can only solve this if you can visualize the pointer movement.
+    """
+    charSet = set()
+    left = 0
+    resultLength = 0
+
+    # right pointer is going through every character
+    for right in range(len(s)):
+        # Check if current right pointer is already in set,
+        while s[right] in charSet:
+            # If yes, remove left value and move left pointer
+            charSet.remove(s[left])
+            left += 1
+        # In any case, add right value to charSet
+        charSet.add(s[right])
+        # Check current window size
+        resultLength = max(resultLength, right - left + 1)
+
+    return resultLength
 
 
 def main():
