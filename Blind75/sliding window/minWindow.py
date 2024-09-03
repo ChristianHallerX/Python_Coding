@@ -10,52 +10,63 @@ The testcases will be generated such that the answer is unique.
 A substring is a contiguous sequence of characters within the string.
 """
 
+
 def minWindow(s: str, t: str) -> str:
     """
-    Use sliding window/left, right pointers to iterate over string.
-    Return the shortest length window with all target chars.
-    Time complexity: O(n), window goes over string s only once.
+    Dict for window contents
+    Dict for t chars
+    Chars in window dict
+    Move right pointer. Once the window contains all correct chars, move the left pointer.
     """
-
-    # empty string edge case described in prompt
-    if t == "":
+    # Handle edge case
+    if s == "":
         return ""
 
-    # init dict for window substring and dict for t target string
-    window_dict, target_dict = {}, {}
-    # init result window index
-    result, result_length = [-1, -1], float("infinity")
-    left_pointer = 0
+    countT = {}
+    windowDict = {}
 
-    # add all target characters and count into dict
+    # Add t chars to dict and increment, default to 0 if not in dict. Will not change.
     for char in t:
-        target_dict[char] = 1 + target_dict.get(char, 0)  # char (key): sum (value)
+        countT[char] = countT.get(char, 0) + 1
 
-    # initialize character count sum for window (have) and target (need)
-    have_count, need_count = 0, len(target_dict)
+    left = 0
+    haveCount = 0  # correct chars in window
+    needCount = len(countT)  # unique characters in T
+    result = [-1, -1]  # we return a substring with pair of window indices
+    resultLength = float("infinity")  # start high, go lower
 
-    for right_pointer in range(len(s)):
-        # get char at right pointer and add char to window dictionary
-        char = s[right_pointer]
-        window_dict[char] = 1 + window_dict.get(char, 0)  # char (key): sum (value)
+    # Always move right pointer
+    for right in range(len(s)):
 
-        if char in target_dict and window_dict[char] == target_dict[char]:
-            have_count += 1
+        # as right pointer moved, add new char to window dict
+        windowDict[s[right]] = windowDict.get(s[right], 0) + 1
 
-        while have_count == need_count:
-            # update result if window shorter than prev length (looking for minimized window)
-            if (right_pointer - left_pointer + 1) < result_length:
-                result = [left_pointer, right_pointer]
-                result_length = (right_pointer - left_pointer + 1)
+        # If this is a char we need and the count of this char is correct
+        if (s[right] in countT) and (windowDict[s[right]] == countT[s[right]]):
+            haveCount += 1
 
-            # move left pointer and remove that char from window dict
-            window_dict[s[left_pointer]] -= 1
-            if s[left_pointer] in target_dict and window_dict[s[left_pointer]] < target_dict[s[left_pointer]]:
-                have_count -= 1
-            left_pointer += 1
+        # When chars with count are present, record the window and its length and mimimize its size
+        # When we don't have all chars anymore, then move right pointer again.
+        while haveCount == needCount:
+            # Update resultLength (window) if smaller than previous (starts @infinity)
+            if (right - left + 1) < resultLength:
+                result = [left, right]
+                resultLength = right - left + 1
 
-    left_pointer, right_pointer = result
-    return s[left_pointer:right_pointer + 1] if result_length != float("infinity") else ""
+            # Decrement left pointer in window dict
+            windowDict[s[left]] -= 1
+
+            # Remove from Have counter if it was correct char and if window dict count
+            # of char is now lower
+            if (s[left] in countT) and (windowDict[s[left]] < countT[s[left]]):
+                haveCount -= 1
+
+            # Move left pointer
+            left += 1
+
+    left, right = result
+    # edge case: only return if result lower than infinity
+    return s[left : right + 1] if resultLength != float("infinity") else ""
 
 
 def main():
@@ -64,5 +75,5 @@ def main():
     print(minWindow(s="a", t="aa"), "expected '' empty string")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

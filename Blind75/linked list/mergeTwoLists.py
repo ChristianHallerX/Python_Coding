@@ -9,95 +9,75 @@ two lists.
 Return the head of the merged linked list.
 """
 
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
-def printLinkedList(msg, head):
-    print(msg, end='')
-    ptr = head
-    # print all node values
-    while ptr:
-        print(ptr.val, end=' —> ')
-        ptr = ptr.next
 
-    # print head
-    print('None')
+def list_to_linkedlist(lst):
+    # Helper function to convert a list to a linked list
+    if not lst:
+        return None
+    head = ListNode(lst[0])
+    current = head
+    for value in lst[1:]:
+        current.next = ListNode(value)
+        current = current.next
+    return head
 
 
-def mergeTwoLists(list1: ListNode, list2: ListNode) -> ListNode:
-    # Process:
-    # Create a new output linked-list starting at dummy tail and work towards head.
-    # Loop through l1 and l2 nodes in parallel.
-    # While both nodes are not None (not empty), add the smaller node of l1 and l2 to output tail.
-    # Move the tail forward and make current l1/l2 node the tail.
-    # If one list is None (empty, l1/l2 are unequal length),
-    # then insert remaining part to output. Since it is pre-sorted, no sorting required.
-    dummy = ListNode()
-    tail = dummy
+def linkedlist_to_list(node):
+    # Helper function to convert a linked list back to a list
+    lst = []
+    while node:
+        lst.append(node.val)
+        node = node.next
+    return lst
 
-    while list1 and list2:  # are BOTH not None/empty
+
+def mergeTwoLists(list1, list2):
+    # Start with dummy to avoid inserting into empty list (e.g., examples 1 and 2)
+    dummyNode = ListNode()
+    tail = dummyNode
+
+    while list1 and list2:
         if list1.val < list2.val:
-            tail.next = list1  # write after tail
-            list1 = list1.next  # move list1 node forward
+            # Define pointer from tail to list1
+            tail.next = list1
+            # Define pointer forward from list1
+            list1 = list1.next
         else:
-            tail.next = list2  # write after tail
-            list2 = list2.next  # move list2 node forward
-        tail = tail.next  # make current node the tail / move tail forward
+            tail.next = list2
+            list2 = list2.next
+        tail = tail.next
 
-    # if only one list is not None, add that one to the tail
+    # What if one list is empty and one is not?
+    # Insert remaining, whole section of list and insert
     if list1:
         tail.next = list1
     elif list2:
         tail.next = list2
 
-    return dummy.next
+    # Return first item of new list after dummy (i.e., head)
+    return dummyNode.next
 
 
 def main():
-    a = b = None
-    for i in reversed([1, 2, 4]):
-        a = ListNode(val=i, next=a)
-    printLinkedList(msg='First List: ', head=a)
+    list1 = list_to_linkedlist([1, 2, 4])
+    list2 = list_to_linkedlist([1, 3, 4])
+    print(linkedlist_to_list(mergeTwoLists(list1, list2)))
 
-    for i in reversed([1, 3, 4]):
-        b = ListNode(val=i, next=b)
-    printLinkedList('Second List: ', b)
+    list1 = list_to_linkedlist([])
+    list2 = list_to_linkedlist([])
+    print(linkedlist_to_list(mergeTwoLists(list1, list2)))
 
-    head = mergeTwoLists(list1=a, list2=b)
-    printLinkedList('After Merge: ', head)
-    print("expected: [1, 1, 2, 3, 4, 4]")
-
-
-    a = b = None
-    for i in reversed([]):
-        a = ListNode(val=i, next=a)
-    printLinkedList('First List: ', a)
-
-    for i in reversed([]):
-        b = ListNode(val=i, next=b)
-    printLinkedList('Second List: ', b)
-
-    head = mergeTwoLists(list1=a, list2=b)
-    printLinkedList('After Merge: ', head)
-    print("expected: []")
+    list1 = list_to_linkedlist([])
+    list2 = list_to_linkedlist([0])
+    print(linkedlist_to_list(mergeTwoLists(list1, list2)))
 
 
-    a = b = None
-    for i in reversed([]):
-        a = ListNode(val=i, next=a)
-    printLinkedList('First List: ', a)
-
-    for i in reversed([0]):
-        b = ListNode(val=i, next=b)
-    printLinkedList('Second List: ', b)
-
-    head = mergeTwoLists(list1=a, list2=b)
-    printLinkedList('After Merge: ', head)
-    print("expected: [0]")
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

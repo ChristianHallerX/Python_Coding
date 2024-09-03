@@ -8,7 +8,9 @@ Example:
     Output:  None<-1<-2<-3<-4<-5=head
 
 Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?
+
 """
+
 
 # Definition for singly-linked list.
 class ListNode:
@@ -17,33 +19,59 @@ class ListNode:
         self.next = next
 
 
-def reverseListIterative(head: Optional[ListNode]) -> Optional[ListNode]:
-    # Time complexity: O(n) linear
-    # memory complexity: O(1) constant, only using pointers
+def list_to_linkedlist(lst):
+    # Helper function to convert a list to a linked list
+    if not lst:
+        return None
+    head = ListNode(lst[0])
+    current = head
+    for value in lst[1:]:
+        current.next = ListNode(value)
+        current = current.next
+    return head
 
-    # initialization at head
-    curr = head  # first node
-    prev = None  # node before first node/head
 
+def linkedlist_to_list(node):
+    # Helper function to convert a linked list back to a list
+    lst = []
+    while node:
+        lst.append(node.val)
+        node = node.next
+    return lst
+
+
+def reverseListIterative(head):
+    """
+    Traverse over list items starting at head and reverse connection around current pointer.
+    Null/None is at the bottom end of list pointing at first item.
+    Head is a regular element at top end of list pointing nowhere.
+    Instantiation of ListNode class as 'curr' with .next attribute.
+    prev, next pointers are variables.
+    Reverse order of pointers around 'current' object.
+    Time complexity: O(n), iterate over list once
+    Space complexity: O(1), just store pointers, no data structures
+    """
+
+    # Curr is the list object, it points nowhere, hence prev=None
+    prev, curr = None, head
+
+    # Continue moving over linked list while whe have not arrived at a None
     while curr is not None:
+        # Before flipping, store original next to temp var
+        temp_next = curr.next
 
-        # save the original next node in var, so we can move forward to it later
-        temp_nxt = curr.next
-
-        # reverse the direction of the link pointing backwards
+        # Flip direction
         curr.next = prev
 
-        # move prev forward to the right node (curr)
+        # Move forward one node
         prev = curr
 
-        # move curr forward to the right node ahead of curr using the temp var
-        curr = temp_nxt
-
-    # return 'prev', since 'curr' should now be None
+        # Move forward one node to original next from temp var
+        curr = temp_next
     return prev
 
 
-def reverseListRecursive(head: Optional[ListNode]) -> Optional[ListNode]:
+def reverseListRecursive(head):
     # Time complexity: O(n) linear
     # memory complexity: O(n) linear (worse than iterative)
 
@@ -60,9 +88,15 @@ def reverseListRecursive(head: Optional[ListNode]) -> Optional[ListNode]:
 
 
 def main():
-    print(reverseListIterative(head=[1, 2, 3, 4, 5]), 'expected: [5, 4, 3, 2, 1]')
-    print(reverseListIterative(head=[1, 2]), 'expected: [2, 1]')
-    print(reverseListIterative(head=[]), 'expected: []')
+    head = list_to_linkedlist([1, 2, 3, 4, 5])
+    print(linkedlist_to_list(reverseListIterative(head)), "expected: [5, 4, 3, 2, 1]")
 
-if __name__ == '__main__':
+    head = list_to_linkedlist([1, 2])
+    print(linkedlist_to_list(reverseListIterative(head)), "expected: [2, 1]")
+
+    head = list_to_linkedlist([])
+    print(linkedlist_to_list(reverseListIterative(head)), "expected: []")
+
+
+if __name__ == "__main__":
     main()

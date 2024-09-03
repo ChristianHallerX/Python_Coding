@@ -10,32 +10,34 @@ An input string is valid if:
 - Every close bracket has a corresponding open bracket of the same type.
 """
 
-def isValid(s: str) -> bool:
-    # time complexity O(n), scan through input string once
-    # space complexity O(n), stack could be in worst case as long as input string
-    # look at the closing parentheses, check hash map which is the corresponding char, is that char on top of stack?
-    # empty list/stack -> all parentheses match each other in correct order -> return True
 
+def isValid(s: str) -> bool:
+    """
+    time complexity O(n), scan through input string once
+    space complexity O(n), stack could be in worst case as long as input string
+    Always append open parenthesis to stack
+    If char is closing parenthesis, check hash map which is the corresponding opening parent
+    is this opening p. on top of stack? If not, then quit.
+    empty list/stack -> all parentheses match each other in correct order -> return True
+    """
     # stack is a list for the opening p., appended to the right, last in first out (LIFO)
     stack = []
     # hash map that matches closing parentheses (key) to open parentheses (value)
-    close_to_open_dict = {")": "(",
-                          "}": "{",
-                          "]": "["
-                          }
+    close_to_open_dict = {")": "(", "}": "{", "]": "["}
     # loop through string once
     for char in s:
-        # if char is a dict key (closing p.) -> find open p. on top of stack (end of list)
+        # if char is a closing p (key in dict)-> find open p. on top of stack (end of list)
         if char in close_to_open_dict:
-            # if stack not empty and last item on stack matches the current char's open p.->pop last stack item/open p.
-            if len(stack) != 0 and stack[-1] == close_to_open_dict[char]:
+            # if stack not empty and last item on stack matches the current char's open p.
+            # -> then pop last stack item/open parenthesis
+            if stack and stack[-1] == close_to_open_dict[char]:
                 # pop removes last item (-1) by default
                 stack.pop()
             else:
                 # the last stack element/open p. does not match the open p. or stack is emtpy
                 return False
         else:
-            # char is not in dict -> is open p. -> append to end of list
+            # if current char is open parenthesis (not in dict) -> append to end of list
             stack.append(char)
 
     # if all open/closing p. match, then the stack should be empty
@@ -44,10 +46,7 @@ def isValid(s: str) -> bool:
 
 def isValidClean(s: str) -> bool:
     stack = []
-    close_to_open_dict = {")": "(",
-                          "}": "{",
-                          "]": "["
-                          }
+    close_to_open_dict = {")": "(", "}": "{", "]": "["}
     for char in s:
         if char in close_to_open_dict:
             if len(stack) != 0 and stack[-1] == close_to_open_dict[char]:

@@ -13,53 +13,59 @@ if it is in 'nums', or -1 if it is not in 'nums'.
 You must write an algorithm with O(log n) runtime complexity. Simply looping over 'mums' is O(n).
 """
 
-def searchRotadedSortedArray(nums: list[int], target: int) -> int:
-    # return index of target, return -1 if not found
-    # if better than linear time complexity O(n) required -> binary search solution
-    # left, middle, right pointer. In which part of the rotated array is the middle pointer?, search left or right next?
-    left_p, right_p = 0, len(nums) - 1
 
-    while left_p <= right_p: # don't let pointers cross
-        mid_p = (left_p + right_p) // 2
-        # all the shifting of pointers always shift mid p to the target -> exit loop here
-        if nums[mid_p] == target:
-            return mid_p
+def search(nums: list[int], target: int) -> int:
+    """
+    Rotated array/list of integers.
+    Return index of target.
+    Find solution that is faster than O(n). I.e., binary search O(logn).
+    Rotation: Pivot, left portion, right portion.
+    Binary Search: left pointer, mid pointer, right pointer.
 
-        # mid is in left portion
-        if nums[left_p] <= nums[mid_p]:
+    If middle val larger than left val, then we are in left sorted portion.
+    You can't figure out the if conditions without drawing up the combinations.
+    """
+    left, right = 0, len(nums) - 1
 
-            # target is larger than mid or smaller than left-most element -> move left p right of mid p
-            if target > nums[mid_p]:
-                left_p = mid_p + 1
-            # target is smaller than left most value, must be in right portion -> move left p right of mid p
-            elif target < nums[left_p]:
-                left_p = mid_p + 1
-            # only search left portion of array
-            # target is smaller than mid, but larger than left most element -> move right p left of mid p
+    while left <= right:
+        mid = (right + left) // 2
+
+        # Target is at mid, exit loop
+        if nums[mid] == target:
+            return mid
+
+        # Mid is in left portion
+        if nums[left] <= nums[mid]:
+            # Search right portion
+            if target > nums[mid]:
+                left = mid + 1
+            # Search right portion
+            elif target < nums[left]:
+                left = mid + 1
+            # Search left portion
             else:
-                right_p = mid_p - 1
+                right = mid - 1
 
-        # mid is in right portion
+        # Mid is in right portion
         else:
-            # target is smaller than mid -> move mid towards left of mid
-            if target < nums[mid_p]:
-                right_p = mid_p - 1
-            # target is larger than right most value -> must be on left portion -> move right p left of mid p
-            elif target > nums[right_p]:
-                right_p = mid_p - 1
-            # only search right portion of array,
-            # target is greater than mid and less than right most element -> move left p to right of mid p
+            # Search left portion
+            if target < nums[mid]:
+                right = mid - 1
+            # Search left portion
+            elif target > nums[right]:
+                right = mid - 1
+            # Search right portion
             else:
-                left_p = mid_p + 1
+                left = mid + 1
 
-    # return -1 if target was not found at mid p
+    # Mid never arrived at target -> bug or -> target does not exist in nums.
     return -1
 
 
 def main():
-    print(searchRotadedSortedArray(nums=[4, 5, 6, 7, 0, 1, 2], target=0), "expected 4")
-    print(searchRotadedSortedArray(nums=[4, 5, 6, 7, 0, 1, 2], target=3), "expected -1")
-    print(searchRotadedSortedArray(nums=[1], target=0), "expected -1")
+    print(search(nums=[4, 5, 6, 7, 0, 1, 2], target=0), "expected 4")
+    print(search(nums=[4, 5, 6, 7, 0, 1, 2], target=3), "expected -1")
+    print(search(nums=[1], target=0), "expected -1")
 
 
 if __name__ == "__main__":
