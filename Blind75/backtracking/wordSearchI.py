@@ -1,5 +1,7 @@
 """
-79. Word Search (Medium)
+79. Word Search I (Medium)
+
+Compare to LC 212 Word Search II, Backtracking Trie.
 
 Given an 'm' *  'n' grid of characters 'board' and a string 'word', return True if 'word' exists in the grid.
 
@@ -53,6 +55,12 @@ def exist(board: list[list[str]], word: str) -> bool:
             or dfs(row, col + 1, i + 1)  # right
             or dfs(row, col - 1, i + 1)  # left
         )
+        # After exploring all possibilities from the current cell,
+        # we remove it from path to allow other paths to use this cell
+        # This is essential for backtracking.
+        # Without removing it, the cell would remain marked as visited,
+        # potentially blocking valid paths in other recursive calls.
+        path.remove((row, col))
         return result
 
     # Brute force DFS function on every coord of grid and start at 'word' index=0
