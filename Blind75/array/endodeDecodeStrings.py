@@ -1,5 +1,5 @@
 """
-659. Encode and Decode Strings (medium)
+659. Encode and Decode Strings (medium) Premium problem, use LintCode
 
 Design an algorithm to encode a list of strings to a string.
 
@@ -8,14 +8,17 @@ The encoded string is then sent over the network and is decoded back to the orig
 Please implement encode and decode.
 """
 
+
 def encode(strs):
     """
-    Combine the strings with the length of the following string and pound sign as separators.
-    example 4#gaga6#brains
+    Combine the strings with the measured length of the following string and pound sign as separators.
+    Example: 4#gaga6#brains2#yo
+    Since the pound sign could be in a string as well, we need the length indicator to skip over any pound signs
+    that are part of the strings and have a pointer move to the start of a new word.
     Args:
         strs: a list of strings
     Returns:
-        encodes a list of strings to a single string.
+        Single encoded string
     """
     result = ""
     for string in strs:
@@ -25,35 +28,43 @@ def encode(strs):
 
 def decode(str):
     """
+    Decodes a single string to a list of strings
+    Two pointer solution.
     Params:
-        str: A string
+        str: A single encoded string containing sub-strings and separators
     Returns:
-        decodes a single string to a list of strings
+        A list of decoded strings.
     """
     result = []
     i = 0
 
-    # i marks the start of a word, j is iterated through the word
+    # Each iteration reads one word. i is at the start of the length number, j pointer marks pound sign
     while i < len(str):
-        j = i  # move j back to current number char
-        # read the encoded length char in the first index of a word and cast to int
-        length = int(str[i])
-        # loop j pointer until before we hit the first pound char -> j is index of the number char
+        j = i  # start j at 0, or move j back to current number char
+
+        # Length may be multi-digit, so use a loop to move j pointer to find the end of the length number
+        # Move j pointer from index of number until it hits the first pound char -> j is index of pound char
         while str[j] != "#":
             j += 1
-        # read one word from one after pound to length and  append to result
-        result.append(str[j+1:j+1+length])
-        # update start-of-word pointer to after current word
-        i = j + 1 + length
 
+        # Length may be multi-digit, so measure from start of number to pound sign, cast to int
+        length = int(str[i:j])
+
+        # Main part: Read current word from one after pound to length and append to result
+        result.append(str[j + 1 : j + 1 + length])
+
+        # Update length number pointer i to after current word
+        i = j + 1 + length
 
     return result
 
 
 def main():
-    print(decode(str=encode(strs=["lint", "code", "love", "you"])), 'expected output: ["lint", "code", "love", "you"]')
-    #print(decode(str=["lint:;code:;love:;you"]), "expected output: ['lint', 'code', 'love', 'you']")
+    print(
+        decode(str=encode(strs=["lint", "code", "love", "you"])),
+        'expected output: ["lint", "code", "love", "you"]',
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
