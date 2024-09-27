@@ -17,7 +17,7 @@ def longestPalindrome(s: str) -> str:
         """
         Given a central index to start from (left and right start from center index),
         Move pointers outwards until no more equal chars.
-        Return palindrome string.
+        Return longest palindrome string starting from indices.
         Time complexity: O(n^2)
         """
         while (
@@ -30,7 +30,7 @@ def longestPalindrome(s: str) -> str:
     # Start the helper from every char
     result = ""
     for i in range(len(s)):
-        # Case 1: With central char (uneven len s)
+        # Case 1: With central char (odd-length string)
         test = palindrome_helper(i, i)
 
         # Update result
