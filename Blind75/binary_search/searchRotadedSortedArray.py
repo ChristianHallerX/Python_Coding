@@ -18,7 +18,7 @@ def search(nums: list[int], target: int) -> int:
     """
     Rotated array/list of integers.
     Return index of target.
-    Find solution that is faster than O(n). I.e., binary search O(logn).
+    Find solution that is faster than O(n). I.e., binary_search O(logn).
     Rotation: Pivot, left portion, right portion.
     Binary Search: left pointer, mid pointer, right pointer.
 

@@ -3,7 +3,7 @@
 
 Compare to LC 212 Word Search II, Backtracking Trie.
 
-Given an 'm' *  'n' grid of characters 'board' and a string 'word', return True if 'word' exists in the grid.
+Given an 'm' * 'n' grid of characters 'board' and a string 'word', return True if 'word' exists in the grid.
 
 The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or
 

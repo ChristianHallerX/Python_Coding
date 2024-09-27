@@ -18,6 +18,8 @@ def twoSum(nums, target):
     The dictionary contains all num values mapped to index (num:index).
     If the diff IS in the dict, return current num's index and diff's index from dict.
     If the diff is NOT in the dict, add the num: index.
+    Time Complexity: O(n), where n is the number of elements in the array. Each element is visited only once.
+    Space Complexity: O(n),  space used by the hash map to store up to n elements.
     """
 
     num_dict = {}  # num: index

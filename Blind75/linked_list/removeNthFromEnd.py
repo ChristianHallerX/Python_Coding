@@ -1,12 +1,12 @@
 """
 19. Remove Nth Node From End of List (Medium)
 
-Given the head of a linked list, remove the nth node from the end of the list and return its head.
+Given the head of a linked_list, remove the nth node from the end of the list and return its head.
 
 """
 
 
-# Definition for singly-linked list.
+# Definition for singly-linked_list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -14,7 +14,7 @@ class ListNode:
 
 
 def list_to_linkedlist(lst):
-    # Helper function to convert a list to a linked list
+    # Helper function to convert a list to a linked_list
     if not lst:
         return None
     head = ListNode(lst[0])
@@ -26,7 +26,7 @@ def list_to_linkedlist(lst):
 
 
 def linkedlist_to_list(node):
-    # Helper function to convert a linked list back to a list
+    # Helper function to convert a linked_list back to a list
     lst = []
     while node:
         lst.append(node.val)
@@ -36,7 +36,7 @@ def linkedlist_to_list(node):
 
 def removeNthFromEnd(head, n):
     """
-    Use two pointers left/right with distance of "n". Add a dummy node at the start, so we find the node before n.
+    Use array_two_pointers left/right with distance of "n". Add a dummy node at the start, so we find the node before n.
     Start left pointer at dummy, right pointer at start + n.
     Move them both until the right pointer hits the position after the last node (end, None).
     The left pointer should be one node before the correct node to delete.

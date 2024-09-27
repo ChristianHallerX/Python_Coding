@@ -1,4 +1,4 @@
-'''
+"""
 33. Search in Rotated Sorted Array (medium)
 
 There is an integer array 'nums' sorted in ascending order (with distinct values).
@@ -14,16 +14,16 @@ Given the array 'nums' after the possible rotation and an integer target, return
 or -1 if it is not in 'nums'.
 
 You must write an algorithm with O(log n) runtime complexity.
-'''
+"""
 
 
 def search(nums: list[int], target: int) -> int:
-    ''' return the index of the target in nums with binary search'''
+    ''' return the index of the target in nums with binary_search'''
     # initialize pointers (indices)
     left_pointer = 0
     right_pointer = len(nums)-1
 
-    # binary search with while loop using pointers, will stop when array length is only one element -> l==r
+    # binary_search with while loop using pointers, will stop when array length is only one element -> l==r
     while left_pointer <= right_pointer:
 
         # assign mid_pointer

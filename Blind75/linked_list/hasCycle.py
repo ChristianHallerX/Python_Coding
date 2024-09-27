@@ -1,9 +1,9 @@
 """
 141. Linked List Cycle (Easy)
 
-Given head, the head of a linked list, determine if the linked list has a cycle in it.
+Given head, the head of a linked_list, determine if the linked_list has a cycle in it.
 
-There is a cycle in a linked list if there is some node in the list that can be reached again by
+There is a cycle in a linked_list if there is some node in the list that can be reached again by
 
 continuously following the next pointer.
 
@@ -11,11 +11,11 @@ Internally, pos is used to denote the index of the node that tail's next pointer
 
 Note that pos is not passed as a parameter.
 
-Return true if there is a cycle in the linked list. Otherwise, return false.
+Return true if there is a cycle in the linked_list. Otherwise, return false.
 """
 
 
-# Definition for singly-linked list.
+# Definition for singly-linked_list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -27,7 +27,7 @@ def list_to_linkedlist_cycle(lst, pos=-1):
         return None  # Return None if the list is empty
 
     head = ListNode(lst[0])  # Initialize the head node with the first element
-    current = head  # Use 'current' to traverse and build the linked list
+    current = head  # Use 'current' to traverse and build the linked_list
     cycle_node = None  # This will point to the node where the cycle should connect
 
     if pos == 0:
@@ -50,8 +50,8 @@ def list_to_linkedlist_cycle(lst, pos=-1):
 
 def hasCycle(head) -> bool:
     """
-    Detect cycle in linked list.
-    Is the tail node connected to an earlier node in the linked list?
+    Detect cycle in linked_list.
+    Is the tail node connected to an earlier node in the linked_list?
     That means, are we visiting the same node twice?
     Return True or False.
     Solution 1: add node object itself to set, which is an O(n) space complexity (bad).

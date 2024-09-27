@@ -1,5 +1,7 @@
 """
-659. Encode and Decode Strings (medium) Premium problem, use LintCode
+659. Encode and Decode Strings (medium)
+
+Premium problem, use LintCode
 
 Design an algorithm to encode a list of strings to a string.
 

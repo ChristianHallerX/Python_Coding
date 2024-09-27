@@ -25,7 +25,7 @@ def maxProfit(prices):
 
 def maxProfitTwoPointer(prices: list[int]) -> int:
     """
-    Two pointer with sliding window.
+    Two pointer with array_sliding_window.
     -> Only move pointers if conditions are met and slide only once across the list.
     Left pointer = buy, right pointer = sell
     Time complexity: O(n)

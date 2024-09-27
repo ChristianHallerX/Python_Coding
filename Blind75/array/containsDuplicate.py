@@ -10,6 +10,7 @@ def containsDuplicate(nums):
     """
     Brute force solution: sort, loop over numbers and check if numbers repeat.
     Time Complexity: O(nlogn + n)
+
     Optimized: Use hash map. Store current number in hash map and look up if it already exists.
     Time Complexity: O(n). Space complexity: O(n)
     Alternative: Use set, that avoids keys/values

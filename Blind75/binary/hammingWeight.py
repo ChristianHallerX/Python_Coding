@@ -12,24 +12,27 @@ Note:
     input represents the signed integer. -3.
 """
 
+
 def hammingWeight(n: int) -> int:
-    """Intuition: modulus 'n' by two, if last place was 1, returns 1, if 0 then 0. Use the output of the modulus
+    """
+    Intuition: modulus 'n' by two, if last place was 1, returns 1, if 0 then 0. Use the output of the modulus
     to add to a running sum 'result'. Then, bit shift 'n' to the right, a 0 is added on the left of 'n'.
-    When bit-shifted far enough, 'n' is all 0, which we use as condition for the while-loop to finish."""
+    When bit-shifted far enough, 'n' is all 0, which we use as condition for the while-loop to finish.
+    """
     result = 0
 
-    # while the number still contains 1s....
+    # While the number still contains 1s....
     while n > 0:
-        result += n%2 # modulus by two and add rest 'to result'
-        n = n>>1
+        result += n % 2  # Modulus by two and add rest 'to result'
+        n = n >> 1
     return result
 
 
 def main():
-    print(hammingWeight(n = 0b00000000000000000000000000001011), 'expected: 3')
-    print(hammingWeight(n = 0b00000000000000000000000010000000), 'expected: 1')
-    print(hammingWeight(n = 0b11111111111111111111111111111101), 'expected: 31')
+    print(hammingWeight(n=0b00000000000000000000000000001011), "expected: 3")
+    print(hammingWeight(n=0b00000000000000000000000010000000), "expected: 1")
+    print(hammingWeight(n=0b11111111111111111111111111111101), "expected: 31")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

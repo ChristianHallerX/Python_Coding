@@ -13,27 +13,38 @@ Notice that you may not slant the container.
 
 """
 
-# O(n*n) exceeds time limit on LeetCode
+
 def maxAreaBruteForce(height: list[int]) -> int:
-    ''' two pointer-problem with two nested loops, each moving over the height list'''
+    """
+    Two pointer-problem with two nested loops, each moving over the height list
+    Time complexity: O(n*n) exceeds time limit on LeetCode
+    """
     # initialize result var
     result = 0
 
     # move left and right pointer through height list
-    for left_pointer in range(len(height)): # start 0, end at length of array
-        for right_pointer in range(left_pointer+1, len(height)): # start at 1, end at length (0 area if both pointers same)
+    for left_pointer in range(len(height)):  # start 0, end at length of array
+        for right_pointer in range(
+            left_pointer + 1, len(height)
+        ):  # start at 1, end at length (0 area if both pointers same)
 
             # calculate area and update result var
-            area = (right_pointer - left_pointer) * min(height[left_pointer], height[right_pointer])
+            area = (right_pointer - left_pointer) * min(
+                height[left_pointer], height[right_pointer]
+            )
             result = max(result, area)
 
     return result
 
 
-# O(n) linear time
+#
 def maxArea(height: list[int]) -> int:
-    '''two pointer problem with  starting from left and right (ends of 'height' list) -> max distance,
-    then always thake the minimum height of a pair of heights and move pointers inward'''
+    """
+    Two pointer problem with starting pointers from left and right (ends of 'height' list) -> max distance,
+    then always take the minimum height of a pair of heights and move pointers inward
+
+    Time complexity: O(n) linear time
+    """
     # initialize result var
     result = 0
 
@@ -43,7 +54,9 @@ def maxArea(height: list[int]) -> int:
     while left_pointer < right_pointer:
 
         # calculate area and update result var
-        area = (right_pointer - left_pointer) * min(height[left_pointer], height[right_pointer])
+        area = (right_pointer - left_pointer) * min(
+            height[left_pointer], height[right_pointer]
+        )
         result = max(result, area)
 
         # update pointers
@@ -56,14 +69,14 @@ def maxArea(height: list[int]) -> int:
 
 
 def main():
-    print('Brute Force O(n*n)')
-    print(maxAreaBruteForce(height=[1,8,6,2,5,4,8,3,7]), 'expected: 49')
-    print(maxAreaBruteForce(height=[1,1]), 'expected: 1')
+    print("Brute Force O(n*n)")
+    print(maxAreaBruteForce(height=[1, 8, 6, 2, 5, 4, 8, 3, 7]), "expected: 49")
+    print(maxAreaBruteForce(height=[1, 1]), "expected: 1")
 
-    print('\nO(n)')
-    print(maxArea(height=[1,8,6,2,5,4,8,3,7]), 'expected: 49')
-    print(maxArea(height=[1,1]), 'expected: 1')
+    print("\nO(n)")
+    print(maxArea(height=[1, 8, 6, 2, 5, 4, 8, 3, 7]), "expected: 49")
+    print(maxArea(height=[1, 1]), "expected: 1")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -1,5 +1,5 @@
-'''
-152. Maximum Product Subarray
+"""
+152. Maximum Product Subarray (medium)
 
 Given an integer array 'nums', find a contiguous non-empty subarray within the array that has
 
@@ -9,7 +9,8 @@ The test cases are generated so that the answer will fit in a 32-bit integer.
 
 A subarray is a contiguous subsequence of the array.
 
-'''
+"""
+
 
 def maxProduct(nums: list[int]) -> int:
     # for a num in the array, get the max (positive) and min (negative?) products up to before num,
@@ -38,9 +39,9 @@ def maxProduct(nums: list[int]) -> int:
 
 
 def main():
-    print(maxProduct(nums=[2, 3, -2, 4]), 'expected: 6')
-    print(maxProduct(nums=[-2, 0, -1]), 'expected: 0')
+    print(maxProduct(nums=[2, 3, -2, 4]), "expected: 6")
+    print(maxProduct(nums=[-2, 0, -1]), "expected: 0")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

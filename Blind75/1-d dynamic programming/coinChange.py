@@ -12,13 +12,14 @@ If that amount of money cannot be made up by any combination of the coins, retur
 You may assume that you have an infinite number of each kind of coin.
 """
 
-def coinChange(coins: list[int], amount: int) -> int:
-    '''Dynamic programing solution. Greedy with preference to large coins does NOT work.
 
-    '''
+def coinChange(coins: list[int], amount: int) -> int:
+    """
+    Dynamic programing solution. Greedy with preference to large coins does NOT work.
+    """
     # initialize a dp list with a maximum default value (amount + 1) or math.inf,
     #  index is the same as sub-amount, last is amount.
-    default_value = (amount + 1)
+    default_value = amount + 1
     dp = [default_value for i in range(amount + 1)]
     # amount 0 requires zero coins and can be pre-populated
     dp[0] = 0
@@ -39,12 +40,12 @@ def coinChange(coins: list[int], amount: int) -> int:
 
 
 def main():
-    print(coinChange(coins=[1, 2, 5], amount=11), 'expected: 3')
-    print(coinChange(coins=[2], amount=3), 'expected: -1')
-    print(coinChange(coins=[1], amount=0), 'expected: 0')
-    print(coinChange(coins=[1], amount=1), 'expected: 1')
-    print(coinChange(coins=[1], amount=2), 'expected: 2')
+    print(coinChange(coins=[1, 2, 5], amount=11), "expected: 3")
+    print(coinChange(coins=[2], amount=3), "expected: -1")
+    print(coinChange(coins=[1], amount=0), "expected: 0")
+    print(coinChange(coins=[1], amount=1), "expected: 1")
+    print(coinChange(coins=[1], amount=2), "expected: 2")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -15,7 +15,7 @@ Do not return anything, modify head in-place instead.
 """
 
 
-# Definition for singly-linked list.
+# Definition for singly-linked_list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -23,7 +23,7 @@ class ListNode:
 
 
 def list_to_linkedlist(lst):
-    # Helper function to convert a list to a linked list
+    # Helper function to convert a list to a linked_list
     if not lst:
         return None
     head = ListNode(lst[0])
@@ -35,7 +35,7 @@ def list_to_linkedlist(lst):
 
 
 def linkedlist_to_list(node):
-    # Helper function to convert a linked list back to a list
+    # Helper function to convert a linked_list back to a list
     lst = []
     while node:
         lst.append(node.val)
@@ -46,7 +46,7 @@ def linkedlist_to_list(node):
 def reorderList(head) -> None:
     """
     Do not return anything, modify head in-place instead.
-    You get the head object of a linked list.
+    You get the head object of a linked_list.
 
     Pattern: Create new list with nodes alternating from head and tail.
     1. Find middle of the list: a slow pointer (one step, start @node1)
@@ -60,7 +60,7 @@ def reorderList(head) -> None:
     # Initialize starting location
     slow = head
     fast = head.next
-    # Find middle: Move pointers across linked list. When fast reaches end, slow will be in middle.
+    # Find middle: Move pointers across linked_list. When fast reaches end, slow will be in middle.
     while fast and fast.next:  # while not None and not reached end
         slow = slow.next
         fast = fast.next.next

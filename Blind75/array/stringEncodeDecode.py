@@ -1,5 +1,5 @@
 """
-271 String Encode and Decode
+271. String Encode and Decode (medium)
 
 Design an algorithm to encode a list of strings to a single string.
 

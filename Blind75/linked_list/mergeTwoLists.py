@@ -6,11 +6,11 @@ You are given the heads of *two sorted* linked lists 'list1' and 'list2'.
 Merge the two lists in *one sorted* list. The list should be made by splicing together the nodes of the first
 two lists.
 
-Return the head of the merged linked list.
+Return the head of the merged linked_list.
 """
 
 
-# Definition for singly-linked list.
+# Definition for singly-linked_list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -18,7 +18,7 @@ class ListNode:
 
 
 def list_to_linkedlist(lst):
-    # Helper function to convert a list to a linked list
+    # Helper function to convert a list to a linked_list
     if not lst:
         return None
     head = ListNode(lst[0])
@@ -30,7 +30,7 @@ def list_to_linkedlist(lst):
 
 
 def linkedlist_to_list(node):
-    # Helper function to convert a linked list back to a list
+    # Helper function to convert a linked_list back to a list
     lst = []
     while node:
         lst.append(node.val)

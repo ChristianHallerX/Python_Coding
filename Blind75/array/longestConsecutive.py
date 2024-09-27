@@ -1,5 +1,5 @@
 """
-128. Longest Consecutive Sequence (medium, formerly hard, asked by Google)
+128. Longest Consecutive Sequence (medium, formerly hard, asked by Google) (medium)
 
 Given an unsorted array of integers 'nums', return the length of the longest consecutive elements sequence.
 

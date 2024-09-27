@@ -10,7 +10,7 @@ Space complexity: O(n) because each character could be unique and the result may
 
 def lengthOfLongestSubstring(s: str) -> int:
     """
-    Sliding window, two pointers, move across string only once.
+    Sliding window, array_two_pointers, move across string only once.
     Move across s only once, move left and right pointers in a smart way.
     Check if substring has dublicates with set. If yes, move left pointer
     Time complexity O(n)
