@@ -16,32 +16,34 @@ You may assume that you have an infinite number of each kind of coin.
 def coinChange(coins: list[int], amount: int) -> int:
     """
     Dynamic programing solution. Greedy with preference to large coins does NOT work.
+    Time Complexity: O(amount * len(coins))
+    Memory Complexity: O(amount) for dp_cache
     """
-    # initialize a dp list with a maximum default value (amount + 1) or math.inf,
-    #  index is the same as sub-amount, last is amount.
-    default_value = amount + 1
-    dp = [default_value for i in range(amount + 1)]
-    # amount 0 requires zero coins and can be pre-populated
-    dp[0] = 0
+    # Initialize a dp_cache as list e.g., [66666] with a maximum default value (amount + 1) or infinite (math.inf)
+    dp_cache = [amount + 1] * (amount + 1)
 
-    # iterate over all sub-amt up to amount (need plus one, since range stops one before)
-    for a in range(1, amount + 1):
-        # for each sub-amt, check all coins
+    # Amount 0 requires zero coins and can be pre-populated
+    dp_cache[0] = 0
+
+    # Bottom up from 1 to amount (need plus one, since range stops one before)
+    for curr_amnt in range(1, amount + 1):
+        # For each curr_amnt, check all coins that don't go negative
         for c in coins:
-            # you can use that coin only if you don't end in the negative
-            if a - c >= 0:
-                # THIS IS IT:  update dp at index/amount -> minimum of itself and dp value of amount and current
-                # coin subtracted. If the min does not update, the default value remains
-                dp[a] = min(dp[a], 1 + dp[a - c])
+            if curr_amnt - c >= 0:
+                # Recurrence relation: update dp at index/amount -> minimum of itself and dp value of amount
+                # and current coin subtracted.
+                dp_cache[curr_amnt] = min(
+                    dp_cache[curr_amnt], 1 + dp_cache[curr_amnt - c]
+                )
 
-    # return the last value of dp list, which is the index for the 'amount', if the value is NOT the default value.
-    # If the element IS the default value and was not updated (coin combo not possible) then return -1.
-    return dp[amount] if dp[amount] != default_value else -1
+    # Return the last value of dp_cache list, which is at the index for the 'amount'.
+    # However, if the last value was untouched (it remained amount+1) because did not compute, then return "-1"
+    return dp_cache[amount] if dp_cache[amount] != (amount + 1) else -1
 
 
 def main():
-    print(coinChange(coins=[1, 2, 5], amount=11), "expected: 3")
-    print(coinChange(coins=[2], amount=3), "expected: -1")
+    print(coinChange(coins=[1, 2, 5], amount=11), "expected: 3, explanation: 5+5+1")
+    print(coinChange(coins=[2], amount=3), "expected: -1, explanation: impossible")
     print(coinChange(coins=[1], amount=0), "expected: 0")
     print(coinChange(coins=[1], amount=1), "expected: 1")
     print(coinChange(coins=[1], amount=2), "expected: 2")
