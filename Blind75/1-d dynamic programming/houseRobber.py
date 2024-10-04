@@ -18,6 +18,8 @@ def rob(nums: list[int]) -> int:
     Solve all the sub-problems to solve the problem.
     Only maintain the last two max we can rob from.
     Time complexity: O(n) linear
+
+
     Memory complexity: O(1) constant, no data structures used.
     """
     rob1, rob2 = 0, 0
