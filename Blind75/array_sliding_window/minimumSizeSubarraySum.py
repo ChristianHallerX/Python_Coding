@@ -19,11 +19,11 @@ def smallestSubarraySum(target: int, nums: list[int]):
     """
     left = 0
     total = 0
-    result = float("inf")  # minimize this subarray length
+    result = float("inf")  # Minimize this subarray length. (right - left) distance
 
     # Move right pointer forward continuously
     for right in range(len(nums)):
-        # add value at right pointer to total
+        # Add value at right pointer to total
         total += nums[right]
 
         # Total above target, calculate subarray size and move left pointer so decrease size

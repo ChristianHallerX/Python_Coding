@@ -1,5 +1,5 @@
 """
-Leetcode 121. Best Time to Buy and Sell Stock (easy)
+121. Best Time to Buy and Sell Stock (easy)
 
 You are given an array 'prices' where 'prices[i]' is the price of a given stock on the i-th day.
 
@@ -37,15 +37,16 @@ def maxProfitTwoPointer(prices: list[int]) -> int:
 
     maxProfit = 0
 
+    # Move right pointer (sell) forward
     while right < len(prices):
         # Calculate profit when left price is lower than right price
         if prices[left] < prices[right]:
             profit = prices[right] - prices[left]
             maxProfit = max(maxProfit, profit)
         else:
-            # Move left pointer forward (buy) when left price is higher
+            # Move left pointer forward (buy) when left price is higher, so that left (buy) gets lowered
             left = right
-        # Always move right
+        # Always move right (buy) forward
         right += 1
 
     return maxProfit

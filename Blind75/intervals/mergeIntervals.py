@@ -7,7 +7,27 @@ array of the non-overlapping intervals that cover all the intervals in the input
 
 
 def merge(intervals: list[list[int]]) -> list[list[int]]:
-    result = []
+    """
+    Original 'intervals' is NOT sorted. Sort first.
+    Does the current interval overlap with the previous interval (previous right val, vs current left value)
+    Time complexity: O(nlogn) for sorting
+    """
+    # Sort by left value
+    # intervals.sort(key=lambda i: i[0])
+    intervals = sorted(intervals)
+    # Prepopulate result with first value to avoid edge case
+    result = [intervals[0]]
+
+    for currStart, currEnd in intervals[1:]:
+        # Compare current interval left value to the last interval's left value in outputs
+        lastEnd = result[-1][1]
+
+        # Overlapping case, update the end value in result
+        if currStart <= lastEnd:
+            result[-1][1] = max(lastEnd, currEnd)
+        # Not overlapping case
+        else:
+            result.append([currStart, currEnd])
 
     return result
 

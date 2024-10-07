@@ -12,7 +12,7 @@ def lengthOfLongestSubstring(s: str) -> int:
     """
     Sliding window, array_two_pointers, move across string only once.
     Move across s only once, move left and right pointers in a smart way.
-    Check if substring has dublicates with set. If yes, move left pointer
+    Check if substring has duplicates with set. If yes, move left pointer
     Time complexity O(n)
     Memory complexity O(n)
     You can only solve this if you can visualize the pointer movement.
