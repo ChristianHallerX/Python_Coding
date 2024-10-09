@@ -19,7 +19,8 @@ def maxAreaNsquared(height: list[int]) -> int:
     The lower/min height of two heights is used, since the difference between lower and upper height spills over.
     Loop through all heights and keep the max.
 
-    Brute force both pointers with two nested loops, Time Complexity O(n2). Exceeds LeetCode time limit.
+    Brute force both pointers with two nested loops
+    Time Complexity O(n2). Exceeds LeetCode time limit.
     """
     result = 0
 

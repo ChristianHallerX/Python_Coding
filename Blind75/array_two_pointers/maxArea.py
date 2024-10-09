@@ -37,7 +37,6 @@ def maxAreaBruteForce(height: list[int]) -> int:
     return result
 
 
-#
 def maxArea(height: list[int]) -> int:
     """
     Two pointer problem with starting pointers from left and right (ends of 'height' list) -> max distance,

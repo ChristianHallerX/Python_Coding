@@ -9,29 +9,28 @@ original letters exactly once.
 
 
 def isAnagram(s: str, t: str) -> bool:
+    """
+    Intuition: create dicts for s and t with letter(key): count(value)
+    Dicts are equal for valid anagrams
+    """
     if len(s) != len(t):
         return False
 
-    # dicts for both strings
+    # Init dicts for both strings
     dictS, dictT = {}, {}
 
-    # loop through index of s, write dicts with char count
+    # Loop through index of and s and t, write dicts with char count
     for i in range(len(s)):
-        # write char at index i as dict key, count as value -> get count of current index (default val 0), add one
-        dictS[s[i]] = 1 + dictS.get(
-            s[i], 0
-        )  # use .get() for value for default value if key is not in dict
-        # same for t
+        # Write char at index i as dict key, count as value
+        # Use .get() for value for default value 0 if key is not in dict, this also works like +=
+        dictS[s[i]] = 1 + dictS.get(s[i], 0)
         dictT[t[i]] = 1 + dictT.get(t[i], 0)
 
-    # compare each dict value
-    for j in dictS:
-        if dictS[j] != dictT.get(
-            j, 0
-        ):  # use .get() for value for default value if key is not in dict
-            return False
-
-    return True
+    # Compare dicts
+    if dictT == dictS:
+        return True
+    else:
+        return False
 
 
 def isAnagramBuiltIn(s: str, t: str) -> bool:
