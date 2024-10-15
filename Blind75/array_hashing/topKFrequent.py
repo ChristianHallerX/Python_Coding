@@ -6,13 +6,16 @@ Given an integer array 'nums' and an integer 'k', return the 'k' most frequent e
 You may return the answer in any order.
 """
 
+
 def topKFrequent(nums: list[int], k: int) -> list[int]:
     hash_map = {}  # number: count
-    freq = [[]] * (len(nums)+1)  # list of lists of length of nums
+    freq = [[]] * (len(nums) + 1)  # list of lists of length of nums
 
     # populate hash_map
     for n in nums:
-        hash_map[n] = 1 + hash_map.get(n, 0)  # loop through numbers and add 1 to previous value, default 0
+        hash_map[n] = 1 + hash_map.get(
+            n, 0
+        )  # loop through numbers and add 1 to previous value, default 0
 
     # write to frequency list of lists
     for number, count in hash_map.items():
@@ -29,9 +32,9 @@ def topKFrequent(nums: list[int], k: int) -> list[int]:
 
 
 def main():
-    print(topKFrequent(nums=[1, 1, 1, 2, 2, 3], k=2), 'expected: [1,2]')
-    print(topKFrequent(nums=[1], k=1), 'expected: [1]')
+    print(topKFrequent(nums=[1, 1, 1, 2, 2, 3], k=2), "expected: [1,2]")
+    print(topKFrequent(nums=[1], k=1), "expected: [1]")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

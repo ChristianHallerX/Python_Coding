@@ -1,13 +1,13 @@
 """
 167. Two Sum II - Input Array Is Sorted (medium)
 
-Given a *1-indexed* array of integers numbers that is *already sorted in non-decreasing order*, find two numbers
+Given a *1-indexed* array_hashing of integers numbers that is *already sorted in non-decreasing order*, find two numbers
 
 such that they add up to a specific target number.
 
 Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 <= numbers.length.
 
-Return the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.
+Return the indices of the two numbers, index1 and index2, added by one as an integer array_hashing [index1, index2] of length 2.
 
 Notes:
     The tests are generated such that there is exactly one solution.
@@ -15,14 +15,15 @@ Notes:
     Your solution must use only constant extra space.
 """
 
+
 def twoSumII(numbers: list[int], target: int) -> list[int]:
     """
     left/right pointer solution to go over list only once -> time complexity O(n), no extra memory space
     pointers will never cross each other
     shift right pointer to decrease sum, shift left pointer to increase sum
     """
-    # initialize pointer indices at left and right of array
-    left_pointer, right_pointer = 0, len(numbers)-1
+    # initialize pointer indices at left and right of array_hashing
+    left_pointer, right_pointer = 0, len(numbers) - 1
 
     # keep iterating while pointers do not cross
     while left_pointer < right_pointer:
@@ -42,10 +43,10 @@ def twoSumII(numbers: list[int], target: int) -> list[int]:
 
 
 def main():
-    print(twoSumII(numbers=[2, 7, 11, 15], target=9), 'expected: [1, 2]')
-    print(twoSumII(numbers=[2, 3, 4], target=6), 'expected: [1, 3]')
-    print(twoSumII(numbers=[-1, 0], target=-1), 'expected: [1, 2]')
+    print(twoSumII(numbers=[2, 7, 11, 15], target=9), "expected: [1, 2]")
+    print(twoSumII(numbers=[2, 3, 4], target=6), "expected: [1, 3]")
+    print(twoSumII(numbers=[-1, 0], target=-1), "expected: [1, 2]")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
