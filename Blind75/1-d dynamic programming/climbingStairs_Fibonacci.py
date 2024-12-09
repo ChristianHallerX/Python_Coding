@@ -9,13 +9,14 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
 
 def climbStairs(n: int) -> int:
     """
-    Solve recursively with DFS decision tree that explores all step possibility paths.
-    With bottom up dynamic programming.
+    #Solve recursively with DFS decision tree that explores all step possibility paths.
+    #With bottom up dynamic programming.
 
-    Base case: steps add up exactly to total stair height.
-    Base case: steps add up to more than stair height.
-    Some branches (intermediate steps) of the decision tree are going to be solved multiple times
-    -> store repeated work in memory (memoization), solve each sub-problem once.
+    #Base case: steps add up exactly to total stair height.
+    #Base case: steps add up to more than stair height.
+    #Some branches (intermediate steps) of the decision tree are going to be solved multiple times
+    #-> store repeated work in memory (memoization), solve each sub-problem once.
+
     Plot twist: Bottom up totals of this problem calculate like Fibonacci sequence. 1, 1, 2, 3...
     Time complexity: O(n)
     Memory complexity: O(1) three values

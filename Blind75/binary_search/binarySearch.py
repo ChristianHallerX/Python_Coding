@@ -12,11 +12,12 @@ You must write an algorithm with O(log n) runtime complexity.
 
 def search(nums: list[int], target: int) -> int:
     """
-    Use left and right pointers at ends of list.
-    Divide indices of left/right in half to find middle pointer
+    Prerequisite: SORTED list.
+    Use left and right pointers at ends of list, plus middle pointer.
+    Integer-divide indices of left/right in half to find middle pointer.
     If value at middle is smaller than target, them continue on right (move left pointer to middle +1)
     If middle is larger than target, continue left (move right pointer to middle -1)
-    Time complexity: O(nlogn)
+    Time complexity: O(nlogn), search space halves in size every step
     Space complexity: O(1) 3 pointers
     """
     left = 0
@@ -25,10 +26,10 @@ def search(nums: list[int], target: int) -> int:
     # Pointers close in from the outside, but do never cross
     while left <= right:
         mid = (left + right) // 2
-        # Search left
+        # Zoom in to left of 'target'
         if nums[mid] > target:
             right = mid - 1
-        # Search right
+        # Zoom in to right of 'target'
         elif nums[mid] < target:
             left = mid + 1
         # nums[mid] == target
