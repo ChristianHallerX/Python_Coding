@@ -1,17 +1,16 @@
 """
 141. Linked List Cycle (Easy)
 
-Given head, the head of a linked_list, determine if the linked_list has a cycle in it.
+Given head, the head of a linked_list, determine if the linked_list has a cycle/loop in it.
 
 There is a cycle in a linked_list if there is some node in the list that can be reached again by
-
 continuously following the next pointer.
 
-Internally, pos is used to denote the index of the node that tail's next pointer is connected to.
+Internally, 'pos' is used to denote the index of the node that tail's next pointer is connected to.
 
-Note that pos is not passed as a parameter.
+Note that 'pos' is not passed as a parameter.
 
-Return true if there is a cycle in the linked_list. Otherwise, return false.
+Return 'True' if there is a cycle in the linked_list. Otherwise, return 'False'.
 """
 
 
@@ -50,18 +49,20 @@ def list_to_linkedlist_cycle(lst, pos=-1):
 
 def hasCycle(head) -> bool:
     """
-    Detect cycle in linked_list.
-    Is the tail node connected to an earlier node in the linked_list?
-    That means, are we visiting the same node twice?
-    Return True or False.
-    Solution 1: add node object itself to set, which is an O(n) space complexity (bad).
-    Solution 2: Slow (one step) and fast (two step) pointer.
-                If cycle, the fast will catch up with slow, if no cycle, fast will go to None.
-                Space complexity O(1)
+    'Floyd’s cycle finding algorithm' aka 'Hare-Tortoise algorithm'
+    Is the tail node connected to an earlier node in the linked_list? Are we visiting the same node twice?
+
+    Solution 1: Add node object itself to set. All nodes need to be copied to a new data structure.
+                Space complexity: O(n) (bad)
+                Time complexity: O(n)
+    Solution 2: Slow moving pointer (one-step) and fast moving pointer (two-step).
+                If loop, slow pointer will catch up with fast, if no loop, fast will go to end of linked list (None).
+                Space complexity O(1) (good)
+                Time Complexity: O(n)
 
     "Pos" is for illustration purposes in the examples what the connected node is.
     It is internal and not an accessible parameter visible.
-    Time Complexity: O(n)
+
     """
     # Initialize fast and slow pointers
     fast = head
@@ -70,22 +71,24 @@ def hasCycle(head) -> bool:
     while fast and fast.next:  # is not None
         slow = slow.next
         fast = fast.next.next
+
+        # Slow pointer catches up with fast (linked-list loop detected), while-loop broken.
         if slow == fast:
             return True
 
-    # The while-loop was broken, arrived at None of a non-cycle LL
+    # Arrived at None/end of list (no linked-list loop found)
     return False
 
 
 def main():
     head = list_to_linkedlist_cycle(lst=[3, 2, 0, -4], pos=1)
-    print(hasCycle(head), "expected: true")
+    print(hasCycle(head), "expected: True")
 
     head = list_to_linkedlist_cycle(lst=[1, 2], pos=0)
-    print(hasCycle(head), "expected: true")
+    print(hasCycle(head), "expected: True")
 
     head = list_to_linkedlist_cycle(lst=[1], pos=-1)
-    print(hasCycle(head), "expected: false")
+    print(hasCycle(head), "expected: False")
 
 
 if __name__ == "__main__":

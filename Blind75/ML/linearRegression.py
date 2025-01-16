@@ -1,5 +1,14 @@
 import numpy as np
 
+"""
+Intuition:
+Find the best-fit line (hyperplane) that minimizes the distance between the predicted values and the actual
+target values.
+Find the optimal parameters θ theta (weights) that minimize the mean squared error (MSE) between the actual and
+predicted values using the 'normal equation'. θ = (X.T * X)^−1 * X.T * y
+
+"""
+
 
 class LinearRegression:
     def __init__(self):
@@ -15,10 +24,10 @@ class LinearRegression:
         y : numpy.ndarray
             Target vector of shape (n_samples, 1).
         """
-        # Add a b (bias intercept) term to the feature matrix
+        # Add a dummy (ones) b (bias intercept) term to X. np.c_ is horizontal concatenation.
         X_b = np.c_[np.ones((X.shape[0], 1)), X]
-        # Compute the optimal parameter theta using the "normal equation". @ = matrix multiplication in numpy
-        # equivalent do np.dot() or np.matmul()
+        # Compute the optimal 'theta' using the "normal equation". @ = matrix multiplication in numpy
+        # equivalent of np.dot() or np.matmul(). linalg.inv() is the ^-1 (inverse) expression
         self.theta = np.linalg.inv(X_b.T @ X_b) @ X_b.T @ y
 
     def predict(self, X):
@@ -35,7 +44,7 @@ class LinearRegression:
         """
         # Add a b (bias intercept) term to the feature matrix, concat X with ones
         X_b = np.c_[np.ones((X.shape[0], 1)), X]
-        # Compute predictions y_pred, @ = matrix multiplication in numpy
+        # Compute predictions y_pred, matmul with trained theta.
         return X_b @ self.theta
 
 
