@@ -1,5 +1,5 @@
 """
-1.
+Question 1.
 Calculate the average transaction value for customers
 who have made more than 10 purchases in the last 90 days
 """
@@ -37,7 +37,7 @@ result_df.show()
 
 
 """
-2.
+Question 2.
 How would you use data obtained from an A/B test to determine the difference in campaign effectiveness
 and estimate the significance of the outcomes?
 """
@@ -73,7 +73,7 @@ and estimate the significance of the outcomes?
 
 
 """
-3.
+Question 3.
 Detail the operational process of a 1D CNN (Convolutional Neural Network).
 """
 
@@ -99,7 +99,7 @@ Key Points:
 """
 
 """
-4.
+Question 4.
 Explain what the training and loss graphs are for a neural network.
 What are some common loss functions used in neural networks, and how do they impact the shape of the loss graph?
 Can you compare and contrast the training and loss graphs for neural networks?
