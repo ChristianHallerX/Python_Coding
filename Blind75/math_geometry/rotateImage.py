@@ -3,7 +3,7 @@
 
 You are given an 'n' * 'n' 2D 'matrix' representing an image, rotate the image by 90 degrees (clockwise).
 
-You have to rotate the image in-place, which means you have to modify the input 2D matrix directly.
+You have to rotate the image *in-place*, which means you have to modify the input 2D matrix directly.
 
 DO NOT allocate another 2D matrix and do the rotation.
 """
@@ -15,20 +15,22 @@ def rotate(matrix: list[list[int]]) -> None:
     Square matrix -> horizontal index is the same as rotated vertical index.
     Rotate outer layer(s) 90 degrees to the right. If odd edge length: Center cell remains in place.
     Pointers: top, bottom, left, right
-    Use temporary variable to write to before writing
-    Time complexity: O(n^2)
-    Memory complexity: O(1), no extra matrices, in-place
+    Use a single temp. variable to store the first old val before writing to array.
+    Do rotation 90° to right, but in counter-clockwise order.
+
+    Time complexity: O(n**2)
+    Memory complexity: O(1), no extra matrices, just temp var, in-place
     """
     # Initialize pointers at corners
     left = 0
     right = len(matrix) - 1
 
-    # Pointers will cross over once finished
+    # Pointers will cross over once finished and loop halt. Each while-loop iteration is a matrix layer.
     while left < right:
-        # Complete a layer of rotation. Number of iterations depends on edge length.
-        # In edge length 4 we have 3 rotations (both corners are the same rotation)
+        # Each For-loop iteration completes an index rotation. Numer of iterations depends on edge-length.
+        # After all indices of layer are completed, constrict pointers to next inner layer
         for i in range(right - left):  # 3 - 0 = 3
-            # assign vertical pointers, same as horizontal
+            # Assign vertical pointers, same as horizontal in an n*n matrix
             top = left
             bottom = right
 
@@ -49,6 +51,7 @@ def rotate(matrix: list[list[int]]) -> None:
             # Move top left to top right (from temp)
             matrix[top + i][right] = topLeft
 
+        # Limit pointers to next inner layer
         right -= 1
         left += 1
 
