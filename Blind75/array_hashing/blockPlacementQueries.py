@@ -17,6 +17,8 @@ You are given a 2D array 'queries', which contains two types of queries:
 
 Return a boolean array results, where results[i] is True if you can place the block specified in the ith query of
 type 2, and False otherwise.
+
+Note: implementation fails performance requirements for very long queries.
 """
 
 

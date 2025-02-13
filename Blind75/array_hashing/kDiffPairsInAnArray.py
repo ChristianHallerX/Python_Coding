@@ -16,8 +16,32 @@ Notice that |val| denotes the absolute value of val.
 def findPairs(nums: list[int], k: int) -> int:
     """
     Find number of pairs
+
+    k (int)    absolute difference between two nums
+
+    Time Complexity: O(n)
+    Space Complexity: O(n)
     """
+
+    # init dict with frequency of each num. num:count
+    num_frequency = {}
+
+    for num in nums:
+        num_frequency[num] = num_frequency.get(num, 0) + 1
+
+    # init k-pairs count for result
     result = 0
+
+    # iterate over unique keys (nums) in dict
+    for num in num_frequency:
+
+        # k is greater 0, num1 and num2 are different from each other
+        if k > 0 and (num + k) in num_frequency:
+            result += 1
+
+        # k is 0, num1 and num2 are identical. Do we have num at frequency > 2 in the dict?
+        elif k == 0 and num_frequency[num] > 1:
+            result += 1
 
     return result
 
