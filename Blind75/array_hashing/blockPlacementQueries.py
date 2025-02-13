@@ -28,13 +28,14 @@ def getResults(queries: list[list[int]]) -> list[bool]:
 
     for query in queries:
         if query[0] == 1:
-            # Place an obstacle at the given position.
+            # Place an obstacle at the given position
             obstacles.append(query[1])
         else:
             # For a block placement query: [2, x, size]
             x, size = query[1], query[2]
 
-            # Sort obstacles and filter those within [0, x].
+            # Sort obstacles and filter those within [0, x]
+            # Major bottleneck
             obstacles.sort()
             obs = [pos for pos in obstacles if 0 <= pos <= x]
 
