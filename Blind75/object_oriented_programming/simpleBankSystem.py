@@ -35,7 +35,7 @@ class Bank:
     def __init__(self, balance: list[int]):
         self.balance = balance
 
-    # transfer money from account 1 to account 2
+    # 1. TRANSFER money from account 1 to account 2
     def transfer(self, account1: int, account2: int, money: int) -> bool:
         # check if both account numbers are valid and account1 has enough balance
         if (
@@ -53,7 +53,7 @@ class Bank:
         # if clause did not succeed
         return False
 
-    # deposit money into a specific account
+    # 2. DEPOSIT money into a specific account
     def deposit(self, account: int, money: int) -> bool:
         # check if account number is valid
         if 1 <= account <= len(self.balance):
@@ -62,6 +62,7 @@ class Bank:
             return True
         return False
 
+    # 3. WITHDRAW
     def withdraw(self, account: int, money: int) -> bool:
         # check if account number is valid and sufficient money
         if 1 <= account <= len(self.balance) and self.balance[account - 1] >= money:
