@@ -47,7 +47,7 @@ from collections import deque
 
 def levelOrder(root: TreeNode) -> list[list[int]]:
     """
-    Add each level's nodes to a list. Return a list of lists. -> Breadth First Search BFS with queue
+    Add each level's nodes to a level-sublist. Return a list of lists. -> Breadth First Search BFS with deque
     Append to right, pop on left onto level-sublist. FIFO. Like a conveyor belt moving left.
     Use collections.deque() (pronounce 'deck')
     Pattern: while-loop q not empty, level-for loop on length of q
@@ -65,15 +65,16 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
         qLen = len(q)
         level_sublist = []
 
-        # We're not using i, since popping defines an index already
+        # Loop over nodes of this level (add next level children, drop current level)
         for i in range(qLen):
-            # Take node on left, add to level_sublist, and append child nodes to right of q.
+            # Remove first node from deque, add to level_sublist, and append child nodes to right of q.
             node = q.popleft()
             if node:  # Only do if not None, could be None
                 level_sublist.append(node.val)
                 q.append(node.left)
                 q.append(node.right)
         if level_sublist:  # Ignore empty level lists (all None)
+            print(level_sublist)
             result.append(level_sublist)
 
     return result
