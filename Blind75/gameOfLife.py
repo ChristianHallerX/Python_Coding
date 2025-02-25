@@ -32,7 +32,7 @@ def gameOfLife(board: list[list[int]]) -> None:
 
     Option 1: with extra memory
     Write results to temp board, then overwrite original board.
-    Time Complexity: O(n*m) evaluate each cell
+    Time Complexity: O(n*m) evaluate each cell once
     Memory Complexity: O(n*m) temp board
 
     Option 2: no extra memory
@@ -40,6 +40,8 @@ def gameOfLife(board: list[list[int]]) -> None:
     Truth table with vals 0,1,2,3 that maps transitions with unique states.
      - First, map board to truth-table states based on neighbor 1's
      - Second, map truth-table state back to live/dead vals
+     Time Complexity: O(2* n*m) -> O(n*m) evaluate each cell twice
+     Memory Complexity: O(1)
 
     ### Truth Table ###
     Original | New | State
