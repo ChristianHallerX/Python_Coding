@@ -58,13 +58,51 @@ def rotate(matrix: list[list[int]]) -> None:
     return None
 
 
+def rotate_transposeRotate(matrix: list[list[int]]) -> None:
+    """
+    The Transpose and Reverse Rows (In-Place) algorithm is used to rotate a square matrix
+    by 90 degrees clockwise.
+    - First, the matrix is transposed, which means converting rows to columns.
+    - Second, each row of the transposed matrix is reversed to achieve the desired rotation.
+    This approach modifies the matrix in place, requiring no additional space.
+    Time Complexity: O(n**2)
+    Memory complexity: O(1), no extra matrices, just temp var, in-place
+    """
+
+    # Get the size of the matrix
+    n = len(matrix)
+
+    # 1. Transpose the matrix
+    for i in range(n):
+        for j in range(i + 1, n):
+
+            # Swap elements to transpose
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+
+    # 2. Reverse each row
+    for i in range(n):
+
+        # Reverse the current row
+        matrix[i].reverse()
+
+
 def main():
     matrix1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     rotate(matrix1)
     print(matrix1, "expected: [[7, 4, 1],[8, 5, 2],[9, 6, 3]]")
 
+    matrix1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    rotate_transposeRotate(matrix1)
+    print(matrix1, "expected: [[7, 4, 1],[8, 5, 2],[9, 6, 3]]")
+
     matrix2 = [[5, 1, 9, 11], [2, 4, 8, 10], [13, 3, 6, 7], [15, 14, 12, 16]]
     rotate(matrix2)
+    print(
+        matrix2,
+        "expected: [[15, 13, 2, 5],[14, 3, 4, 1],[12, 6, 8, 9],[16, 7, 10, 11]]",
+    )
+    matrix2 = [[5, 1, 9, 11], [2, 4, 8, 10], [13, 3, 6, 7], [15, 14, 12, 16]]
+    rotate_transposeRotate(matrix2)
     print(
         matrix2,
         "expected: [[15, 13, 2, 5],[14, 3, 4, 1],[12, 6, 8, 9],[16, 7, 10, 11]]",

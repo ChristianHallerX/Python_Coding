@@ -233,10 +233,7 @@ def run_train(
             # 4. Backprop
             total_loss.backward()
 
-            # 5
-            #
-            #
-            # . Gradient Descent
+            # 5. Gradient Descent
             optimizer.step()
 
             # Compute accuracy for the color classification

@@ -48,6 +48,7 @@ class SimpleNet(nn.Module):
         return x
 
 
+# 0. Transfer model to the device (GPU or CPU)
 model = SimpleNet().to(device)
 
 # Loss and optimizer
@@ -60,15 +61,23 @@ for epoch in range(num_epochs):
     model.train()  ########## Set model to train mode
     running_loss = 0.0
     for images, labels in train_loader:
+
+        # 0. Transfer inputs and labels to the device (GPU or CPU)
         images, labels = images.to(device), labels.to(device)
 
-        # Forward pass
+        # 1. Optimizer zero grad
+        optimizer.zero_grad()
+
+        # 2. Forward Pass
         outputs = model(images)
+
+        # 3. Loss
         loss = criterion(outputs, labels)
 
-        # Backward pass and optimization
-        optimizer.zero_grad()
+        # 4. Backprop
         loss.backward()
+
+        # 5. Gradient Descent
         optimizer.step()
 
         running_loss += loss.item()
