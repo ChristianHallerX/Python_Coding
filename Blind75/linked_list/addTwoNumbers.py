@@ -1,6 +1,6 @@
 """
-2. Add Two Numbers (
-Medium)
+2. Add Two Numbers (Medium)
+
 You are given two non-empty linked lists representing two non-negative integers.
 
 The digits are stored in reverse order, and each of their nodes contains a single digit.
@@ -52,18 +52,19 @@ def addTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
     # initialize carry to handle sums greater than 9
     carry = 0
 
+    # Edge case: keep going another iteration if the carry is >0
     while l1 is not None or l2 is not None or carry != 0:
 
-        val1 = l1.val if l1 is not None else 0
+        val1 = l1.val if l1 is not None else 0  # None value is equal to a zero
         val2 = l2.val if l2 is not None else 0
 
-        # sum up and add carry from last iteration
+        # new digit: sum up and add the carry from last iteration
         totalSum = val1 + val2 + carry
 
-        # calc carry for next iteration
+        # calc the new carry for next iteration
         carry = totalSum // 10
 
-        # create new LL and Node with sum
+        # create new LL Node with sum
         currentNode.next = ListNode(totalSum % 10)
 
         # advance output LL pointer forward for next iteration
@@ -85,14 +86,14 @@ def main():
     LL1 = list_to_linkedlist(l1)
     LL2 = list_to_linkedlist(l2)
     sumLL = addTwoNumbers(LL1, LL2)
-    print(linkedlist_to_list(sumLL), "expected: [7,0,8]")
+    print(linkedlist_to_list(sumLL), "expected: [7, 0, 8]")
 
     l1 = [9, 9, 9, 9, 9, 9, 9]
     l2 = [9, 9, 9, 9]
     LL1 = list_to_linkedlist(l1)
     LL2 = list_to_linkedlist(l2)
     sumLL = addTwoNumbers(LL1, LL2)
-    print(linkedlist_to_list(sumLL), "expected: [8,9,9,9,0,0,0,1]")
+    print(linkedlist_to_list(sumLL), "expected: [8, 9, 9, 9, 0, 0, 0, 1]")
 
     l1 = [0]
     l2 = [0]

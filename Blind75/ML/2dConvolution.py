@@ -5,11 +5,6 @@ of the output matrix after applying the conv2D function, stride of 1
 
 import numpy as np
 
-# Correct the input matrix to be 4x4 as indicated
-A = np.array([[12, 13, 25, 6], [88, 26, 51, 19], [9, 77, 42, 3], [10, 20, 30, 40]])
-
-K = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
-
 
 def conv2d(matrix, kernel, padding):
 
@@ -37,7 +32,21 @@ def conv2d(matrix, kernel, padding):
     return output
 
 
-result = conv2d(A, K, 0)
-print(result)
+if __name__ == "__main__":
+    # Correct the input matrix to be 4x4 as indicated
+    image = np.array(
+        [[12, 13, 25, 6], [88, 26, 51, 19], [9, 77, 42, 3], [10, 20, 30, 40]]
+    )
 
-print("expected: \n[[-99. 143.],\n[288.  49.]]")
+    print("no padding")
+    kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+    result = conv2d(matrix=image, kernel=kernel, padding=0)
+    print(result, "\nexpected: \n[[-99. 143.],\n[288.  49.]]")
+
+    print("\nwith padding")
+    kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
+    result = conv2d(matrix=image, kernel=kernel, padding=1)
+    print(
+        result,
+        "\nexpected: \n[[ -41.    2.   55.  -14.]\n[ 393.  -99.  143.   35.]\n[-130.  288.   49.  -86.]\n[  21.  -17.   48.  167.]] ",
+    )
