@@ -42,7 +42,7 @@ def primepalindrome(n):
 
 """
 The solution involves:
-(1) generating odd-length palindromes starting from a given number 'n' and
+(1) generating palindromes starting from a given number 'n' and
 (2) checking if they are prime.
 
 The algorithm generates palindromes by mirroring the first half of the number and checks for primality using

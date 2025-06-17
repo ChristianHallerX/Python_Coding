@@ -43,8 +43,31 @@ def create_binary_tree(lst):
 
 
 def goodNodes(root: TreeNode) -> int:
+    """
+    DFS recursive solution using a max() variable comparing current node with previous node.
+    Use Good-Node counter.
+    """
 
-    return None
+    def dfs(node, maxVal):
+
+        # Base case handling
+        if not node:
+            return 0
+
+        # Calculate result based on maxVal and current node's value
+        result = 1 if node.val >= maxVal else 0
+
+        # Update maxVal for current node
+        maxVal = max(maxVal, node.val)
+
+        # Run recursive dfs call on next deeper nodes
+        result += dfs(node.left, maxVal)
+        result += dfs(node.right, maxVal)
+
+        return result
+
+    # start DFS and return result, use dummy value for maxVal
+    return dfs(root, root.val)
 
 
 if __name__ == "__main__":
