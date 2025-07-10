@@ -1,23 +1,25 @@
 """
 1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit (Medium)
 
-Given an array of integers 'nums' and an integer 'limit', return the size of the longest non-empty subarray
-such that the absolute difference between any two elements of this subarray is less than or equal to 'limit'.
+Given an array of integers 'nums' and an integer 'limit', return the size of the longest non-empty
+subarray such that the absolute difference between any two elements of this subarray is less than or
+equal to limit.
 """
-
-from collections import deque
 
 
 def longestSubarray(nums: list[int], limit: int) -> int:
     """
-    The Sliding Window with Deque algorithm is used to efficiently find the longest subarray where the
-    absolute difference between any two elements is less than or equal to a given limit.
-    By maintaining two deques, one for the maximum values and one for the minimum values within the current
-    window, we can dynamically adjust the window size while ensuring the condition is met.
+    The Sliding Window with Deque algorithm is used to efficiently find the longest subarray where the absolute
+    difference between any two elements is less than or equal to a given limit.
+    By maintaining two deques, one for the maximum values and one for the minimum values within
+    the current window, we can dynamically adjust the window size while ensuring the condition is met.
 
     Time Complexity: O(n)
     Space Complexity: O(n)
     """
+
+    from collections import deque
+
     # Initialize deques for max and min values
     maxDeque = deque()  # monotonically decreasing order
     minDeque = deque()  # monotonically increasing order
@@ -26,14 +28,16 @@ def longestSubarray(nums: list[int], limit: int) -> int:
     left = 0
     result = 0
 
-    # Right pointer moves forward constinuously
+    # Right pointer moves forward continuously
     for right in range(len(nums)):
 
-        # Maintain the decreasing order in maxDeque, if not decreasing, right val too large, then pop from right end
+        # Maintain the decreasing order in maxDeque, if not decreasing, right val too large,
+        # then pop from right end
         while maxDeque and nums[maxDeque[-1]] <= nums[right]:
             maxDeque.pop()  # the pop() removes from the right side of the deque
 
-        # Maintain the increasing order in minDeque, if not increasing, right val too small, then pop from right end
+        # Maintain the increasing order in minDeque, if not increasing, right val too small,
+        # then pop from right end
         while minDeque and nums[minDeque[-1]] >= nums[right]:
             minDeque.pop()
 
@@ -59,7 +63,7 @@ def longestSubarray(nums: list[int], limit: int) -> int:
     return result
 
 
-def main():
+if __name__ == "__main__":
     nums = [8, 2, 4, 7]
     limit = 4
     print(longestSubarray(nums, limit), "expected: 2")
@@ -72,6 +76,6 @@ def main():
     limit = 0
     print(longestSubarray(nums, limit), "expected: 3")
 
-
-if __name__ == "__main__":
-    main()
+    nums = [4, 2, 3, 6, 2, 2, 3, 2, 7]
+    limit = 1
+    print(longestSubarray(nums, limit), "expected: 4")
