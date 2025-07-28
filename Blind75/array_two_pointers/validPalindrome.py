@@ -14,7 +14,10 @@ Given a string 's', return True if it is a palindrome, or False otherwise.
 
 def isPalindrome(s: str) -> bool:
     """
-    Built in functions (isalnum() and lower()) are unclear what time/space complexity they have
+    Solution 1:
+    Check if string matches reversed string.
+
+    Built-in functions (isalnum() and lower()) are unclear what time/space complexity they have
     """
     newStr = ""
 
@@ -29,6 +32,10 @@ def isPalindrome(s: str) -> bool:
 
 def isPalindromePointers(s: str) -> bool:
     """
+    Solution 2:
+    Two pointers moving from outside to center of word.
+    Compare letter/number between the pointers. Move inward if match.
+
     Build own alphanumeric helper function
     Time complexity: O(n), pointers iterate only once over string.
     """
