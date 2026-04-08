@@ -9,10 +9,10 @@ Open `index.html` in a browser, or serve the folder with any simple static serve
 If Python is available on your machine, one easy option is:
 
 ```bash
-python -m http.server 8000
+python -m http.server 8123
 ```
 
-Then navigate to `http://localhost:8000/snake/`.
+Then navigate to `http://localhost:8123/snake/`.
 
 ## Controls
 
